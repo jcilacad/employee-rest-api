@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.
                 findById(id).
                 orElseThrow(() ->
-                        new RuntimeException("Id " + id + " not found")
+                        new RuntimeException("Employee id not found - " + id)
                 );
     }
 
