@@ -17,8 +17,31 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
+    // Find the list of employees
     @Override
     public List<Employee> findAll() {
         return employeeRepository.findAll();
+    }
+
+    // Save or update the employee
+    @Override
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    // Find the employee by id
+    @Override
+    public Employee findById(Long id) {
+        return employeeRepository.
+                findById(id).
+                orElseThrow(() ->
+                        new RuntimeException("Id " + id + " not found")
+                );
+    }
+
+    // Delete the employee by id
+    @Override
+    public void deleteById(Long id) {
+        employeeRepository.deleteById(id);
     }
 }
