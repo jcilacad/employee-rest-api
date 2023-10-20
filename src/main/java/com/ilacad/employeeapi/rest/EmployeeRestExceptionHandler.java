@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class EmployeeRestExceptionHandler {
 
-    // Exception handler for employee that is not existing in database
+    // Exception handler for not existed employee
     @ExceptionHandler
     public ResponseEntity<EmployeeErrorResponse> handleException (EmployeeNotFoundException exc) {
 
@@ -19,5 +19,19 @@ public class EmployeeRestExceptionHandler {
         errorResponse.setTimeStamp(System.currentTimeMillis());
 
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    // Global Exception handler
+    @ExceptionHandler
+    public ResponseEntity<EmployeeErrorResponse> handleException (Exception exc) {
+
+        EmployeeErrorResponse errorResponse = new EmployeeErrorResponse();
+
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setMessage(exc.getMessage());
+        errorResponse.setTimeStamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+
     }
 }
