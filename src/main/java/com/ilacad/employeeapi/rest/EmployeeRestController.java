@@ -20,9 +20,9 @@ public class EmployeeRestController {
         this.employeeService = employeeService;
     }
 
-    // Get List of all employees
+    // Get the list of employees
     @GetMapping("/employees")
-    public List<Employee> getEmployees() {
+    public List<Employee> findAll() {
         return employeeService.findAll();
     }
 }

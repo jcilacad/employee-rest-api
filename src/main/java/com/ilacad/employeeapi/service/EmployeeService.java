@@ -7,4 +7,10 @@ import java.util.List;
 public interface EmployeeService {
 
     List<Employee> findAll();
+
+    Employee save(Employee employee);
+
+    Employee findById(Long id);
+
+    void deleteById(Long id);
 }
