@@ -3,10 +3,7 @@ package com.ilacad.employeeapi.rest;
 import com.ilacad.employeeapi.entity.Employee;
 import com.ilacad.employeeapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +32,18 @@ public class EmployeeRestController {
 
         // return the employee
         return employee;
+    }
+
+
+    // Add Employee
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee employee) {
+
+        // Set the employee id to 0 to specifically make use the create function
+        employee.setId(0L);
+
+        Employee dbEmployee = employeeService.save(employee);
+
+        return dbEmployee;
     }
 }
