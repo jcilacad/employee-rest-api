@@ -46,4 +46,16 @@ public class EmployeeRestController {
 
         return dbEmployee;
     }
+
+
+    // Mapping for updating an employee
+    @PutMapping("/employees")
+    public Employee updateEmployee (@RequestBody Employee employee) {
+
+        // Update employee
+        Employee updatedEmployee = employeeService.save(employee);
+
+        // Return the newly updated employee
+        return updatedEmployee;
+    }
 }
