@@ -48,14 +48,27 @@ public class EmployeeRestController {
     }
 
 
-    // Mapping for updating an employee
+    // Mapping for updating an employee details
     @PutMapping("/employees")
-    public Employee updateEmployee (@RequestBody Employee employee) {
+    public Employee updateEmployee(@RequestBody Employee employee) {
 
         // Update employee
         Employee updatedEmployee = employeeService.save(employee);
 
-        // Return the newly updated employee
         return updatedEmployee;
     }
+
+    // Mapping for deleting an employee
+    @DeleteMapping("/employees/{employeeId}")
+    public String deleteEmployee(@PathVariable Long employeeId) {
+
+        // Check if the id exists, throw if it does not exists
+        employeeService.findById(employeeId);
+
+        // Delete employee if exists
+        employeeService.deleteById(employeeId);
+
+        return "Successfully deleted employee with employee id - " + employeeId;
+    }
+
 }
