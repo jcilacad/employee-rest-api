@@ -51,8 +51,10 @@ public class EmployeeSecurityConfig {
                     .requestMatchers(HttpMethod.DELETE, "/employees/**").hasRole("ADMIN");
 
         });
-        
+
         httpSecurity.httpBasic(Customizer.withDefaults());
+
+        httpSecurity.csrf(csrf -> csrf.disable());
 
 
         return httpSecurity.build();
